@@ -14,9 +14,8 @@ def get_hue(image_hsv, region):
 image = plt.imread("balls_and_rects.png")
 image_hsv = color.rgb2hsv(image)
 gray = color.rgb2gray(image)
-thresh = threshold_otsu(gray)
-binary = (gray > thresh).astype(int)
-labeled = label(binary)
+gray[gray != 0] = 1
+labeled = label(gray)
 regions = regionprops(labeled)
 figs = {"balls": {}, "rects": {}}
 total_count = len(regions)
